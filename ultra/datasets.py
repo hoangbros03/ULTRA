@@ -246,6 +246,7 @@ class TransductiveDataset(InMemoryDataset):
         super().__init__(root, transform, pre_transform)
         self.data, self.slices = torch.load(self.processed_paths[0])
 
+    # For getter/setter method, i.e., call .raw_file_names instead of .raw_file_names()
     @property
     def raw_file_names(self):
         return ["train.txt", "valid.txt", "test.txt"]
@@ -306,6 +307,7 @@ class TransductiveDataset(InMemoryDataset):
         valid_triplets = valid_results["triplets"]
         test_triplets = test_results["triplets"]
 
+        # .t() means transpose
         train_target_edges = torch.tensor([[t[0], t[1]] for t in train_triplets], dtype=torch.long).t()
         train_target_etypes = torch.tensor([t[2] for t in train_triplets])
 
@@ -316,6 +318,8 @@ class TransductiveDataset(InMemoryDataset):
         test_etypes = torch.tensor([t[2] for t in test_triplets])
 
         train_edges = torch.cat([train_target_edges, train_target_edges.flip(0)], dim=1)
+        
+        # + = addition element-wise
         train_etypes = torch.cat([train_target_etypes, train_target_etypes+num_relations])
 
         train_data = Data(edge_index=train_edges, edge_type=train_etypes, num_nodes=num_node,
@@ -509,6 +513,15 @@ class Hetionet(TransductiveDataset):
         "https://www.dropbox.com/s/4dhrvg3fyq5tnu4/test.txt?dl=1",
         ]
     name = "hetionet"
+
+class PoloHetionet(TransductiveDataset):
+
+    urls = [
+        "https://raw.githubusercontent.com/liu-yushan/PoLo/refs/heads/main/datasets/Hetionet/train.txt",
+        "https://raw.githubusercontent.com/liu-yushan/PoLo/refs/heads/main/datasets/Hetionet/dev.txt",
+        "https://raw.githubusercontent.com/liu-yushan/PoLo/refs/heads/main/datasets/Hetionet/test.txt",
+        ]
+    name = "polohetionet"
 
 
 class AristoV4(TransductiveDataset):
