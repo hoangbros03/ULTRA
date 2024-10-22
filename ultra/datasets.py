@@ -523,6 +523,22 @@ class PoloHetionet(TransductiveDataset):
         ]
     name = "polohetionet"
 
+class HHMHetionet(TransductiveDataset):
+
+    urls = [
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/ctchetionet/train.txt",
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/ctchetionet/dev.txt",
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/ctchetionet/test.txt"
+    ]
+    name="hhmhetionet"
+
+class DirectCtcHetionet(TransductiveDataset):
+    urls = [
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/directctchetionet/train.txt",
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/directctchetionet/dev.txt",
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/directctchetionet/test.txt"
+    ]
+    name ="directctchetionet"
 
 class AristoV4(TransductiveDataset):
 

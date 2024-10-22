@@ -85,6 +85,7 @@ def all_negative(data, batch):
     t_batch = torch.stack([h_index, t_index, r_index], dim=-1)
     # generate all negative heads for this batch
     all_index = torch.arange(data.num_nodes, device=batch.device)
+    # breakpoint()
     t_index, h_index = torch.meshgrid(pos_t_index, all_index, indexing="ij")
     h_batch = torch.stack([h_index, t_index, r_index], dim=-1)
 
