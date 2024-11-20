@@ -532,6 +532,14 @@ class HHMHetionet(TransductiveDataset):
     ]
     name="hhmhetionet"
 
+class HMMv2Hetionet(TransductiveDataset):
+    urls = [
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/hhmv2hetionet/train.txt",
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/hhmv2hetionet/dev.txt",
+        "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/hhmv2hetionet/test.txt"
+    ]
+    name="hhmv2hetionet"
+
 class DirectCtcHetionet(TransductiveDataset):
     urls = [
         "https://raw.githubusercontent.com/hoangbros03/ULTRA/refs/heads/main/experiments/directctchetionet/train.txt",
