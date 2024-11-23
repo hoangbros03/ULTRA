@@ -12,6 +12,7 @@ from torch.nn import functional as F
 from torch import distributed as dist
 from torch.utils import data as torch_data
 from torch_geometric.data import Data
+from tqdm import tqdm
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from ultra import tasks, util
@@ -131,7 +132,7 @@ def test(cfg, model, test_data, device, logger, filtered_data=None, return_metri
     rankings = []
     num_negatives = []
     tail_rankings, num_tail_negs = [], []  # for explicit tail-only evaluation needed for 5 datasets
-    for batch in test_loader:
+    for batch in tqdm(test_loader, total=len(test_loader), desc="Test"):
         t_batch, h_batch = tasks.all_negative(test_data, batch)
         t_pred = model(test_data, t_batch)
         h_pred = model(test_data, h_batch)

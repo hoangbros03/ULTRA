@@ -1098,6 +1098,7 @@ class JointDataset(InMemoryDataset):
         'DBpedia100k': DBpedia100k,
         'YAGO310': YAGO310,
         'AristoV4': AristoV4,
+        'HMMv2Hetionet': HMMv2Hetionet,
     }
 
     def __init__(self, root, graphs, transform=None, pre_transform=None):
